@@ -40,10 +40,10 @@ let computerPlay = getComputerChoice();
 let playerPlay = getPlayerChoice();
 let winner = round(computerPlay, playerPlay);
 console.log(winner);
-console.log(playerPlay.toLowerCase);
+console.log(playerPlay.toLowerCase());
 
-if (winner === "player" && playerPlay.toLowerCase === "rock") { alert("You win! Rock beats scissors!");
-} else if (winner === "player" && playerPlay.toLowerCase === "paper") { alert("You win! Paper beats rock!");
-} else if (winner === "player" && playerPlay.toLowerCase === "scissors") { alert("You win! Scissors beats paper!");
+if (winner === "player" && playerPlay.toLowerCase() === "rock") { alert("You win! Rock beats scissors!");
+} else if (winner === "player" && playerPlay.toLowerCase() === "paper") { alert("You win! Paper beats rock!");
+} else if (winner === "player" && playerPlay.toLowerCase() === "scissors") { alert("You win! Scissors beats paper!");
 } else if (winner === "tie") { alert("A cat's game ;)");
 } else alert("Tragic. AI is on its way to taking over.")
