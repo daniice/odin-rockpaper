@@ -12,7 +12,6 @@ return computerPlay;
 //get player choice
 function getPlayerChoice() {
     let playerPlay = prompt("Choose your fighter!");
-    console.log(playerPlay);
     return playerPlay;
 }
 
@@ -35,15 +34,35 @@ function round(computerPlay, playerPlay) {
     return winner;
 }
 
-//initiate round
-let computerPlay = getComputerChoice();
-let playerPlay = getPlayerChoice();
-let winner = round(computerPlay, playerPlay);
-console.log(winner);
-console.log(playerPlay.toLowerCase());
+//5 round game
+function game() {
+    let computerScore = 0;
+    let playerScore = 0;
+    for (let i = 0; i < 5; i++) {
+    let computerPlay = getComputerChoice();
+    let playerPlay = getPlayerChoice();
+    let winnerRound = round(computerPlay, playerPlay);
 
-if (winner === "player" && playerPlay.toLowerCase() === "rock") { alert("You win! Rock beats scissors!");
-} else if (winner === "player" && playerPlay.toLowerCase() === "paper") { alert("You win! Paper beats rock!");
-} else if (winner === "player" && playerPlay.toLowerCase() === "scissors") { alert("You win! Scissors beats paper!");
-} else if (winner === "tie") { alert("A cat's game ;)");
-} else alert("Tragic. AI is on its way to taking over.")
+    if (winnerRound === "player" && playerPlay.toLowerCase() === "rock") { alert("You win! Rock beats scissors!");
+    } else if (winnerRound === "player" && playerPlay.toLowerCase() === "paper") { alert("You win! Paper beats rock!");
+    } else if (winnerRound === "player" && playerPlay.toLowerCase() === "scissors") { alert("You win! Scissors beats paper!");
+    } else if (winnerRound === "tie") { alert("A cat's game ;)");
+    } else alert("Tragic. AI is on its way to taking over.")
+
+    if (winnerRound === "player") { playerScore++
+    } else if (winnerRound === "computer") { computerScore++ }
+    }
+
+    if (playerScore > computerScore) {winner = "player"
+    } else if (computerScore > playerScore) {winner = "computer"}
+
+    return winner;
+}
+
+
+//ending
+let winner;
+winner = game();
+
+if (winner === "player") { alert("You are so so cool. Winner winner.");
+} else alert("Better luck or something like that :'(");
