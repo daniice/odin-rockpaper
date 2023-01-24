@@ -9,7 +9,14 @@ function getComputerChoice() {
 return computerPlay;
 }
 
-//play rock paper scissors
+//get player choice
+function getPlayerChoice() {
+    let playerPlay = prompt("Choose your fighter!");
+    console.log(playerPlay);
+    return playerPlay;
+}
+
+//play a round
 function round(computerPlay, playerPlay) {
     let winner;
     if (computerPlay === "rock") {
@@ -28,7 +35,15 @@ function round(computerPlay, playerPlay) {
     return winner;
 }
 
+//initiate round
 let computerPlay = getComputerChoice();
-let playerPlay = prompt();
+let playerPlay = getPlayerChoice();
 let winner = round(computerPlay, playerPlay);
 console.log(winner);
+console.log(playerPlay.toLowerCase);
+
+if (winner === "player" && playerPlay.toLowerCase === "rock") { alert("You win! Rock beats scissors!");
+} else if (winner === "player" && playerPlay.toLowerCase === "paper") { alert("You win! Paper beats rock!");
+} else if (winner === "player" && playerPlay.toLowerCase === "scissors") { alert("You win! Scissors beats paper!");
+} else if (winner === "tie") { alert("A cat's game ;)");
+} else alert("Tragic. AI is on its way to taking over.")
