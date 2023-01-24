@@ -1,18 +1,13 @@
 //get computer choice
 function getComputerChoice() {
-    let computerChoiceNumber = Math.random()*3
+    let computerChoiceNumber = Math.random()*3;
     console.log(computerChoiceNumber);
-    return computerChoiceNumber;
-}
-    
-let computerChoice = getComputerChoice();
-
-let computerPlay
-if (computerChoice < 1) { computerPlay = "rock";
-    } else if (computerChoice < 2) { computerPlay = "paper";
+    let computerPlay;
+    if (computerChoiceNumber < 1) { computerPlay = "rock";
+    } else if (computerChoiceNumber < 2) { computerPlay = "paper";
     } else computerPlay = "scissors";
-
-console.log(computerPlay);
+return computerPlay;
+}
 
 //play rock paper scissors
 function round(computerPlay, playerPlay) {
@@ -30,6 +25,10 @@ function round(computerPlay, playerPlay) {
         } else if (playerPlay === "paper") {winner = "computer"
         } else winner = "tie"
     }
-    console.log(winner);
     return winner;
 }
+
+let computerPlay = getComputerChoice();
+let playerPlay = prompt();
+let winner = round(computerPlay, playerPlay);
+console.log(winner);
