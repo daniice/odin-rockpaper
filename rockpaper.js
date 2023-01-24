@@ -39,18 +39,18 @@ function game() {
     let computerScore = 0;
     let playerScore = 0;
     for (let i = 0; i < 5; i++) {
-    let computerPlay = getComputerChoice();
-    let playerPlay = getPlayerChoice();
-    let winnerRound = round(computerPlay, playerPlay);
+        let computerPlay = getComputerChoice();
+        let playerPlay = getPlayerChoice();
+        let winnerRound = round(computerPlay, playerPlay);
 
-    if (winnerRound === "player" && playerPlay.toLowerCase() === "rock") { alert("You win! Rock beats scissors!");
-    } else if (winnerRound === "player" && playerPlay.toLowerCase() === "paper") { alert("You win! Paper beats rock!");
-    } else if (winnerRound === "player" && playerPlay.toLowerCase() === "scissors") { alert("You win! Scissors beats paper!");
-    } else if (winnerRound === "tie") { alert("A cat's game ;)");
-    } else alert("Tragic. AI is on its way to taking over.")
+        if (winnerRound === "player" && playerPlay.toLowerCase() === "rock") { alert("You win! Rock beats scissors!");
+        } else if (winnerRound === "player" && playerPlay.toLowerCase() === "paper") { alert("You win! Paper beats rock!");
+        } else if (winnerRound === "player" && playerPlay.toLowerCase() === "scissors") { alert("You win! Scissors beats paper!");
+        } else if (winnerRound === "tie") { alert("A cat's game ;)");
+        } else alert("Tragic. AI is on its way to taking over.")
 
-    if (winnerRound === "player") { playerScore++
-    } else if (winnerRound === "computer") { computerScore++ }
+        if (winnerRound === "player") { playerScore++
+        } else if (winnerRound === "computer") { computerScore++ }
     }
 
     if (playerScore > computerScore) {winner = "player"
