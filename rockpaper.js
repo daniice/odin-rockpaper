@@ -16,8 +16,13 @@ function getPlayerChoice() {
 }
 
 //play a round
-function round(computerPlay, playerPlay) {
+function round(e) {
     let winner;
+    playerPlay = e.target.id;
+    console.log(playerPlay);
+    computerPlay = getComputerChoice();
+    console.log(computerPlay);
+
     if (computerPlay === "rock") {
         if (playerPlay === "rock") { winner = "tie"
         } else if (playerPlay === "paper") { winner = "player"
@@ -31,38 +36,77 @@ function round(computerPlay, playerPlay) {
         } else if (playerPlay === "paper") {winner = "computer"
         } else winner = "tie"
     }
-    return winner;
+    if (winner === "player") { alert("You are so so cool. Winner winner.");
+    } else alert("Better luck or something like that :'(");
 }
 
 //5 round game
-function game() {
-    let computerScore = 0;
-    let playerScore = 0;
-    for (let i = 0; i < 5; i++) {
-        let computerPlay = getComputerChoice();
-        let playerPlay = getPlayerChoice();
-        let winnerRound = round(computerPlay, playerPlay);
+//function game() {
+    //let computerScore = 0;
+    //let playerScore = 0;
+    //for (let i = 0; i < 5; i++) {
+        //let computerPlay = getComputerChoice();
+        //let playerPlay = getPlayerChoice();
+        //let winnerRound = round(computerPlay, playerPlay);
 
-        if (winnerRound === "player" && playerPlay.toLowerCase() === "rock") { alert("You win! Rock beats scissors!");
-        } else if (winnerRound === "player" && playerPlay.toLowerCase() === "paper") { alert("You win! Paper beats rock!");
-        } else if (winnerRound === "player" && playerPlay.toLowerCase() === "scissors") { alert("You win! Scissors beats paper!");
-        } else if (winnerRound === "tie") { alert("A cat's game ;)");
-        } else alert("Tragic. AI is on its way to taking over.")
+        //if (winnerRound === "player" && playerPlay.toLowerCase() === "rock") { alert("You win! Rock beats scissors!");
+        //} else if (winnerRound === "player" && playerPlay.toLowerCase() === "paper") { alert("You win! Paper beats rock!");
+        //} else if (winnerRound === "player" && playerPlay.toLowerCase() === "scissors") { alert("You win! Scissors beats paper!");
+        //} else if (winnerRound === "tie") { alert("A cat's game ;)");
+        //} else alert("Tragic. AI is on its way to taking over.")
 
-        if (winnerRound === "player") { playerScore++
-        } else if (winnerRound === "computer") { computerScore++ }
-    }
+        //if (winnerRound === "player") { playerScore++
+        //} else if (winnerRound === "computer") { computerScore++ }
+    //}
 
-    if (playerScore > computerScore) {winner = "player"
-    } else if (computerScore > playerScore) {winner = "computer"}
+    //if (playerScore > computerScore) {winner = "player"
+    //} else if (computerScore > playerScore) {winner = "computer"}
 
-    return winner;
-}
+    //return winner;
+//}
+
 
 
 //ending
-let winner;
-winner = game();
+//let winner;
+//winner = round();
 
-if (winner === "player") { alert("You are so so cool. Winner winner.");
-} else alert("Better luck or something like that :'(");
+
+const buttons = Array.from(document.querySelectorAll('.butt'));
+buttons.forEach(butt => butt.addEventListener('click', round))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//const rock = document.querySelector('#buttRock');
+//rock.addEventListener('onclick', round(getComputerChoice, "rock"));
+
+//const paper = document.querySelector('#buttPaper');
+//rock.addEventListener('click', winner = round(getComputerChoice(), "paper"));
+
+//const scissors = document.querySelector('buttScissors');
+//rock.addEventListener('click', winner = round(getComputerChoice(), "scissors"));
+
+
+
