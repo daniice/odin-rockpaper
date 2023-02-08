@@ -6,12 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="rockpaper.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-    <button id="rock" class="butt">ROCK</button>
-    <button id="paper" class="butt">PAPER</button>
-    <button id="scissors" class="butt">SCISSORS</button>
+    <div class="butts"> 
+        <button id="rock" class="butt">ROCK</button>
+        <button id="paper" class="butt">PAPER</button>
+        <button id="scissors" class="butt">SCISSORS</button>
+    </div>
+
+    <div class="score">
+        <div class="scoreLocal">SCORE:</div>
+        <div class="scoreLabels">
+            <div class="playerLabel">
+                <div>Queenie You!!</div>
+                <div id="playerNumber">0</div>
+            </div>
+            <div class="computerLabel">
+                <div>Hunk of Metal</div>
+                <div id="computerNumber">0</div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

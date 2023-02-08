@@ -21,7 +21,6 @@ function round(e) {
     playerPlay = e.target.id;
     console.log(playerPlay);
     computerPlay = getComputerChoice();
-    console.log(computerPlay);
 
     if (computerPlay === "rock") {
         if (playerPlay === "rock") { winner = "tie"
@@ -36,14 +35,20 @@ function round(e) {
         } else if (playerPlay === "paper") {winner = "computer"
         } else winner = "tie"
     }
-    if (winner === "player") { alert("You are so so cool. Winner winner.");
-    } else alert("Better luck or something like that :'(");
+    return winner;
 }
 
 //5 round game
-//function game() {
+//function game(a, b) {
     //let computerScore = 0;
     //let playerScore = 0;
+    //computerScore = com
+
+
+
+
+
+
     //for (let i = 0; i < 5; i++) {
         //let computerPlay = getComputerChoice();
         //let playerPlay = getPlayerChoice();
@@ -67,13 +72,44 @@ function round(e) {
 
 
 
-//ending
-//let winner;
-//winner = round();
+function upScore() {
+
+}
+
+function loss() {
+
+}
+
+function win() {
+
+}
 
 
+
+let computerScore = 0;
+let playerScore = 0;
 const buttons = Array.from(document.querySelectorAll('.butt'));
-buttons.forEach(butt => butt.addEventListener('click', round))
+buttons.forEach(butt => butt.addEventListener('click', (event) => {
+    let winner = round(event);
+    console.log(winner);
+    if (winner === "player") { 
+        alert("You are so so cool. Winner winner.");
+        playerScore = playerScore + 1;
+        console.log(playerScore);
+    } else if (winner === "tie") {alert("Game of the cat!")
+    } else {
+        let scorie;
+        alert("Better luck or something like that :'(");
+        computerScore = computerScore + 1;
+        console.log(computerScore);
+        scorie = parseInt(document.querySelector('#computerNumber').textContent);
+        console.log(scorie);
+        upScore()
+    }
+
+    if (computerScore === 5) loss();
+    else if (playerScore === 5) win();
+  }));
 
 
 
@@ -97,16 +133,6 @@ buttons.forEach(butt => butt.addEventListener('click', round))
 
 
 
-
-
-//const rock = document.querySelector('#buttRock');
-//rock.addEventListener('onclick', round(getComputerChoice, "rock"));
-
-//const paper = document.querySelector('#buttPaper');
-//rock.addEventListener('click', winner = round(getComputerChoice(), "paper"));
-
-//const scissors = document.querySelector('buttScissors');
-//rock.addEventListener('click', winner = round(getComputerChoice(), "scissors"));
 
 
 
