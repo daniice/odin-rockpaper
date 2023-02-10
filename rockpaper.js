@@ -6,6 +6,10 @@ function getComputerChoice() {
     if (computerChoiceNumber < 1) { computerPlay = "rock";
     } else if (computerChoiceNumber < 2) { computerPlay = "paper";
     } else computerPlay = "scissors";
+    const computerChoice = document.createElement("p");
+    computerChoice.textContent = 'computer chose ${computerPlay}';
+    const fighterButts = document.querySelector('.fighterbutts');
+    fighterButts.appendChild(computerChoice);
 return computerPlay;
 }
 
@@ -38,50 +42,31 @@ function round(e) {
     return winner;
 }
 
-//5 round game
-//function game(a, b) {
-    //let computerScore = 0;
-    //let playerScore = 0;
-    //computerScore = com
-
-
-
-
-
-
-    //for (let i = 0; i < 5; i++) {
-        //let computerPlay = getComputerChoice();
-        //let playerPlay = getPlayerChoice();
-        //let winnerRound = round(computerPlay, playerPlay);
-
-        //if (winnerRound === "player" && playerPlay.toLowerCase() === "rock") { alert("You win! Rock beats scissors!");
-        //} else if (winnerRound === "player" && playerPlay.toLowerCase() === "paper") { alert("You win! Paper beats rock!");
-        //} else if (winnerRound === "player" && playerPlay.toLowerCase() === "scissors") { alert("You win! Scissors beats paper!");
-        //} else if (winnerRound === "tie") { alert("A cat's game ;)");
-        //} else alert("Tragic. AI is on its way to taking over.")
-
-        //if (winnerRound === "player") { playerScore++
-        //} else if (winnerRound === "computer") { computerScore++ }
-    //}
-
-    //if (playerScore > computerScore) {winner = "player"
-    //} else if (computerScore > playerScore) {winner = "computer"}
-
-    //return winner;
-//}
-
-
-
-function upScore() {
-
+//up a score by one (location for condensing some of below code in the future)
+function upScore(scorie) {
+  return scorie + 1;
 }
 
+//transition the window display if lost five games
 function loss() {
-
+    const body = document.querySelector('body')
+    body.innerHTML = '';
+    const lose = document.createElement("p");
+    lose.textContent = 'TRAGIC';
+    body.classList.add('winLose');
+    body.appendChild(lose);
+    body.addEventListener('transitionend', function(){location.reload()});
 }
 
+//transition the window display if won five games
 function win() {
-
+    const body = document.querySelector('body')
+    body.innerHTML = '';
+    const winn = document.createElement("p");
+    winn.textContent = 'YAY';
+    body.classList.add('winLose');
+    body.appendChild(winn);
+    body.addEventListener('transitionend', function(){location.reload()});
 }
 
 
@@ -89,6 +74,7 @@ function win() {
 let computerScore = 0;
 let playerScore = 0;
 const buttons = Array.from(document.querySelectorAll('.butt'));
+//plays a round and adds one to the score of the winner on screen, alerts win/loss/tie
 buttons.forEach(butt => butt.addEventListener('click', (event) => {
     let winner = round(event);
     console.log(winner);
@@ -96,6 +82,13 @@ buttons.forEach(butt => butt.addEventListener('click', (event) => {
         alert("You are so so cool. Winner winner.");
         playerScore = playerScore + 1;
         console.log(playerScore);
+        scorie = parseInt(document.querySelector('#playerNumber').textContent);
+        //is there a way to move this all into upScore function? using someth similar to #${winner}number?
+        console.log(scorie);
+        let newScore;
+        newScore = upScore(scorie);
+        document.querySelector('#playerNumber').innerHTML = newScore;
+        if (newScore === 5) win();
     } else if (winner === "tie") {alert("Game of the cat!")
     } else {
         let scorie;
@@ -104,9 +97,13 @@ buttons.forEach(butt => butt.addEventListener('click', (event) => {
         console.log(computerScore);
         scorie = parseInt(document.querySelector('#computerNumber').textContent);
         console.log(scorie);
-        upScore()
+        let newScore;
+        newScore = upScore(scorie);
+        document.querySelector('#computerNumber').innerHTML = newScore;
+        if (newScore === 5) loss();
     }
 
+    //check if either score has reached five
     if (computerScore === 5) loss();
     else if (playerScore === 5) win();
   }));
