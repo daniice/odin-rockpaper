@@ -2,13 +2,13 @@
 
 body {
     height: 100vh;
-    margin: 0;
+    margin-top: 20px;
     overflow: hidden;
     font-family: Roboto, sans-serif;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: stretch;
     transition: all 2s ease;
 }
@@ -30,6 +30,10 @@ body {
     justify-content: space-evenly;
 }
 
+.butt:hover {
+    background-color: #aaa;
+}
+
 button {
     font-family: Roboto, sans-serif;
     border: none;
@@ -38,6 +42,7 @@ button {
     background: white;
     width: 150px;
     font-size: 100px;
+    cursor: pointer;
   }
 
 .score {
@@ -46,6 +51,7 @@ button {
     justify-content: center;
     font-size: 48px;
     gap: 24px;
+    margin-bottom: 40px;
 }
 
 .scoreLocal {
@@ -73,4 +79,31 @@ button {
     display: flex; 
     align-items: center; 
     justify-content: center;
+}
+
+.roundResult {
+    animation: fadeIn 3s ease;
+    align-self: center;
+}
+
+.fadeOut {
+    animation: fadeOut 0s ease 2s forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }

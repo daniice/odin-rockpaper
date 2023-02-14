@@ -6,10 +6,6 @@ function getComputerChoice() {
     if (computerChoiceNumber < 1) { computerPlay = "rock";
     } else if (computerChoiceNumber < 2) { computerPlay = "paper";
     } else computerPlay = "scissors";
-    const computerChoice = document.createElement("p");
-    computerChoice.textContent = 'computer chose ${computerPlay}';
-    const fighterButts = document.querySelector('.fighterbutts');
-    fighterButts.appendChild(computerChoice);
 return computerPlay;
 }
 
@@ -23,8 +19,9 @@ function getPlayerChoice() {
 function round(e) {
     let winner;
     playerPlay = e.target.id;
-    console.log(playerPlay);
+    console.log('clicked button = ' + playerPlay);
     computerPlay = getComputerChoice();
+    addRoundCompChoice(computerPlay);
 
     if (computerPlay === "rock") {
         if (playerPlay === "rock") { winner = "tie"
@@ -69,6 +66,42 @@ function win() {
     body.addEventListener('transitionend', function(){location.reload()});
 }
 
+function addRoundCompChoice(comp) {
+    const fighterButts = document.querySelector('.fighterButts');
+    const roundCompChoice = document.createElement('p');
+    console.log('addRoundCompChoice comp = ' + comp);
+    roundCompChoice.classList.add('roundResult');
+
+    if (comp === 'rock') { roundCompChoice.textContent = 'Computer: 🪨';
+    } else if (comp === 'paper') { roundCompChoice.textContent = 'Computer: 📃';
+    } else if (comp === 'scissors') { roundCompChoice.textContent = 'Computer: ✂️';
+    } 
+    fighterButts.appendChild(roundCompChoice);
+    roundCompChoice.classList.add('fadeOut');
+    setTimeout(() => {
+        fighterButts.removeChild(roundCompChoice);
+    }, 2000);
+}
+
+function addRoundWinner(winner) {
+    const fighterButts = document.querySelector('.fighterButts');
+    const roundWinner = document.createElement('p');
+    console.log('addRoundWinner winner = ' + roundWinner);
+    roundWinner.classList.add('roundResult');
+
+    if (winner === 'player') { roundWinner.textContent = "You are so so cool. Winner winner.";
+    } else if (winner === 'computer') { roundWinner.textContent = "Better luck or something like that :'(";
+    } else if (winner === 'tie') { roundWinner.textContent = "Game of the cat!";
+    } 
+    fighterButts.appendChild(roundWinner);
+    roundWinner.classList.add('fadeOut');
+    setTimeout(() => {
+        fighterButts.removeChild(roundWinner);
+    }, 2000);
+}
+
+
+
 
 
 let computerScore = 0;
@@ -78,21 +111,19 @@ const buttons = Array.from(document.querySelectorAll('.butt'));
 buttons.forEach(butt => butt.addEventListener('click', (event) => {
     let winner = round(event);
     console.log(winner);
+    addRoundWinner(winner);
     if (winner === "player") { 
-        alert("You are so so cool. Winner winner.");
         playerScore = playerScore + 1;
         console.log(playerScore);
         scorie = parseInt(document.querySelector('#playerNumber').textContent);
-        //is there a way to move this all into upScore function? using someth similar to #${winner}number?
+        //is there a way to move this all into upScore function? using someth similar to #${winner}number? - maybe with backwards ticks
         console.log(scorie);
         let newScore;
         newScore = upScore(scorie);
         document.querySelector('#playerNumber').innerHTML = newScore;
         if (newScore === 5) win();
-    } else if (winner === "tie") {alert("Game of the cat!")
-    } else {
+    } else if (winner === "computer") {
         let scorie;
-        alert("Better luck or something like that :'(");
         computerScore = computerScore + 1;
         console.log(computerScore);
         scorie = parseInt(document.querySelector('#computerNumber').textContent);
