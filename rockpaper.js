@@ -44,7 +44,7 @@ function upScore(scorie) {
   return scorie + 1;
 }
 
-//transition the window display if lost five games
+//transition the window display if lost five games - animation appears slightly lower than center
 function loss() {
     const body = document.querySelector('body')
     body.innerHTML = '';
@@ -55,14 +55,14 @@ function loss() {
     body.addEventListener('transitionend', function(){location.reload()});
 }
 
-//transition the window display if won five games
+//transition the window display if won five games - animation appears slightly lower than center?
 function win() {
     const body = document.querySelector('body')
-    body.innerHTML = '';
-    const winn = document.createElement("p");
-    winn.textContent = 'YAY';
     body.classList.add('winLose');
-    body.appendChild(winn);
+    body.innerHTML = 'YAY';
+    //const winn = document.createElement("p");
+    //winn.textContent = 'YAY';
+    //body.appendChild(winn);
     body.addEventListener('transitionend', function(){location.reload()});
 }
 
@@ -109,7 +109,10 @@ let playerScore = 0;
 const buttons = Array.from(document.querySelectorAll('.butt'));
 //plays a round and adds one to the score of the winner on screen, alerts win/loss/tie
 buttons.forEach(butt => butt.addEventListener('click', (event) => {
-    let winner = round(event);
+    const fighterButts = document.querySelector('.fighterButts');
+    //checks if there are already results displayed and returns if so - could change UI here
+    if (fighterButts.children.length >= 4) return;
+    else { let winner = round(event);
     console.log(winner);
     addRoundWinner(winner);
     if (winner === "player") { 
@@ -133,6 +136,7 @@ buttons.forEach(butt => butt.addEventListener('click', (event) => {
         document.querySelector('#computerNumber').innerHTML = newScore;
         if (newScore === 5) loss();
     }
+}
 
     //check if either score has reached five
     if (computerScore === 5) loss();
